@@ -1,4 +1,5 @@
-# iwo
+<img width=150 src="https://rawgithub.com/benjaminwingert/iwo/master/media/icon.svg">
+
 IWO is a minimal Open Source home automation system. Its purpose is to allow the control of arbirary household devices, such as projectors, televisions, radio sockets just to name a few, with the Alexa voice assistant. Altough it is not just limited to for this purpose and can be easily extended with additional features.
 
 Current features support the following:
