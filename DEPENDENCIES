@@ -1,0 +1,26 @@
+HARDWARE
+
+ESP8266 WEMOS D1 mini
+IR LED, IR receiver
+
+SOFTWARE
+Arduino (used version 1.8.5)
+with additional board URL: http://arduino.esp8266.com/versions/2.4.1/package_esp8266com_index.json
+Arduino esp8266fs-plugin
+https://github.com/esp8266/arduino-esp8266fs-plugin
+
+fauxmoESP
+https://bitbucket.org/xoseperez/fauxmoesp/overview
+
+ArduinoJson
+https://arduinojson.org/
+
+IRremoteESP8266
+https://github.com/markszabo/IRremoteESP8266
+
+WiFiManager
+https://github.com/tzapu/WiFiManager
+
+ESP8266WiFi
+ESP8266WebServer
+
