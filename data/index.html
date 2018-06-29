@@ -1,0 +1,647 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<title>IWO Config Website</title>
+		<!--<link rel="Shortcut Icon" href="/favicon.ico" type="image/x-icon" />-->
+		<meta http-equiv="pragma" content="no-cache" />
+		<meta name="robots" content="all" />
+		<meta name="MSSmartTagsPreventParsing" content="true" />
+		<meta http-equiv="imagetoolbar" content="false" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<style>
+			* {
+				padding: 0;
+				margin: 0;
+				font-family: Helvetica;
+				color: #fff;
+			}
+			body {
+				background-color: #333;
+			}
+			p, option {
+				font-size: 16px;
+				line-height: 24px;
+				margin-bottom: 22px;
+				-webkit-font-smoothing: antialiased;
+			}
+			a {
+				font-weight: bold;
+				text-decoration: none;
+				border-bottom: 1px solid rgba(255,255,255,0.3);
+			}
+			a:hover {
+				color: #333;
+				background-color: #fff;
+				border-bottom: none;
+			}
+			.menuPoint a {
+				border-bottom: none;
+			}
+			#monogram {
+				width: 75px;
+				padding-left: 50px;
+				padding-right: auto;
+				margin-top: 50px;
+			}
+			#background {
+				position: absolute;
+				z-index: -100;
+				width: 100vw;
+				height: 100vh;
+				overflow: hidden;
+				background-repeat: no-repeat;
+				background-size: 100% auto;
+				opacity: 0.2;
+			}
+			#foreground {
+				position: absolute;
+				z-index: 0;
+				width: 100vw;
+				height: 100vh;
+			}
+			#menu {
+				width: 150px;
+				padding-left: 57px;
+				padding-right: auto;
+				margin-top: 50px;
+				float: left;
+			}
+			.content {
+				width: calc(100% - (150px + 57px) - (50px + 150px));
+				margin-top: 50px;
+				margin-left: 50px;
+				margin-right: 150px;
+				float: left;
+			}
+			#hidden {
+				display: none;
+			}
+			.button {
+				color: #444;
+				font-weight: bold;
+				background-color: #fff;
+				border: none;
+				padding: 15px 32px;
+				text-align: center;
+				text-decoration: none;
+				display: inline-block;
+				outline: none;
+			}
+			.button:hover {
+				background-color: #aaa;
+				cursor: pointer;
+				border: none;
+			}
+			table {
+				table-layout: fixed;
+			}
+			td {
+				height: 2em;
+				border-bottom: 1px solid #aaa4;
+				white-space: pre-wrap;
+			}
+			.smallFont {
+				font-size: 10px;
+				display: block;
+			}
+			.newSignalName, .newGroupName {
+				width: 95%;
+				background-color: #FFF1;
+				outline: none;
+				border: 1px solid #444;
+				font-size: 16px;
+				line-height: 32px;
+			}
+			.addSignal, .removeSignal, .addGroup, .removeGroup {
+				font-size: 30px;
+				line-height: 30px;
+				margin-left: 30%;
+			}
+			.onSignalList, .onSignalState, .onSignalDelay, .offSignalList, .offSignalState, .offSignalDelay {
+				display: inline-block;
+				color: #444;
+				font-weight: bold;
+				background-color: #fff;
+				border: none;
+				padding: 15px 32px;
+				text-align: center;
+				text-decoration: none;
+				outline: none;
+				float: left;
+			}
+			.onSignalList, .offSignalList {
+				width: calc(50% - 2 * 15px);
+			}
+			.onSignalState, .offSignalState {
+				width: calc(25% - 2 * 5px);
+				margin-left: 5px;
+				padding: 15px;
+			}
+			.onSignalDelay, .offSignalDelay {
+				width: calc(20% - 2 * 5px);
+				margin-left: 5px;
+				padding: 16px 5px;
+			}
+			.onSignalList option, .onSignalState option, .offSignalList option, .offSignalState option {
+				color: #444;
+			}
+			.test{
+				background-color: red;
+				width: 50%;
+				height: 20px;
+				float: left;
+			}
+
+		</style>
+	</head>
+
+	<body>
+		<div id="background">
+		</div>
+
+		<div id="foreground">
+			<div id="monogram">
+				<svg version="1.2" baseprofile="tiny" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+					 x="0px" y="0px" viewbox="0 0 595.281 295.445" xml:space="preserve">
+				<g>
+					<path fill="#fff" d="M57.118,197.706V80.758h29.154v116.948H57.118z"/>
+					<path fill="#fff" d="M230.052,197.706h-30.148l-21.037-74.873l-21.203,74.873h-30.148L97.864,80.758h29.32l17.228,80.505l21.203-80.505h26.007
+						l21.865,80.505l17.063-80.505h29.154L230.052,197.706z"/>
+					<path fill="#fff" d="M361.9,188.927c-6.294,5.135-17.559,12.258-36.773,12.258c-7.123,0-26.504-1.159-41.413-16.73
+						c-15.736-16.564-16.73-38.762-16.73-45.719c0-6.13,0.828-22.694,11.099-37.769c5.964-8.779,19.547-23.854,46.713-23.854
+						c22.197,0,35.615,9.938,41.744,16.233c11.264,11.596,17.559,30.646,17.559,46.713C384.097,157.95,376.312,177.165,361.9,188.927z
+						 M347.323,112.563c-1.49-1.988-4.969-6.129-11.264-8.779c-4.97-1.988-9.276-2.153-11.265-2.153c-6.46,0-10.933,2.153-13.086,3.313
+						c-11.761,6.626-15.902,21.037-15.902,33.461c0,15.902,4.97,24.517,9.773,29.651c5.135,5.467,12.092,8.448,19.712,8.448
+						c3.811,0,12.921-0.994,20.21-8.779c6.625-7.123,8.944-16.399,9.275-25.676C355.274,127.305,350.802,117.366,347.323,112.563z"/>
+				</g>
+				<path fill="#fff" d="M487.194,201.21c-2.072-12.94-9.318-25.882-20.707-38.822c-12.422-13.977-30.021-27.952-51.762-40.894
+					c22.258,15.012,38.305,30.541,46.586,45.553c2.588,4.658,4.141,8.799,5.176,13.458c1.035,5.177,1.555,10.353,0.518,15.529
+					c-0.518,2.588-1.553,4.658-2.588,7.247c-21.223,51.763-166.678,69.88-334.91,39.34c-7.246-1.035-13.975-2.588-20.705-4.141
+					c-33.646-6.729-65.738-15.012-94.727-24.329c10.871,6.212,22.775,12.423,35.199,18.117c27.953,12.94,60.045,24.847,95.244,34.164
+					c16.564,4.141,33.646,8.282,51.246,11.388c5.695,1.035,10.871,1.553,16.047,2.588c45.553,7.247,89.033,9.317,127.338,7.247
+					c26.918-1.553,51.246-5.177,71.951-10.87c37.27-10.353,63.67-26.399,72.986-48.141c1.555-3.623,2.59-7.246,3.625-10.87
+					C488.229,212.081,487.711,206.904,487.194,201.21z"/>
+				<polygon fill="#fff" points="546.526,49.069 556.511,49.069 551.379,32.445 "/>
+				<path fill="#fff" d="M450.695,38.47c2.231-0.39,2.957-1.395,3.291-2.287c0.112-0.279,0.335-0.948,0.335-1.841
+					c0-0.837-0.167-2.845-2.565-3.626c-0.503-0.167-1.116-0.279-2.232-0.279h-8.479v8.201h7.419
+					C448.519,38.637,449.914,38.582,450.695,38.47z"/>
+				<path fill="#fff" d="M452.759,46.168c-0.726-0.279-1.507-0.391-3.18-0.391h-8.535v9.54h6.861c3.515,0,5.244-0.391,6.527-1.729
+					c0.445-0.502,1.06-1.395,1.06-3.012C455.493,47.675,453.875,46.559,452.759,46.168z"/>
+				<path fill="#fff" d="M569.682,7.646H427.086c-6.303,0-11.523,5.222-11.523,11.523v47.172c0,6.302,5.221,11.523,11.523,11.523
+					h142.596c6.303,0,11.523-5.222,11.523-11.523V19.17C581.206,12.868,575.985,7.646,569.682,7.646z M460.792,60.003
+					c-3.236,2.176-7.029,2.455-10.822,2.455h-18.299V23.073h16.179c1.06,0,2.12,0,3.124,0.056c4.072,0.167,8.424,0.669,11.102,4.24
+					c0.78,1.004,1.896,2.845,1.896,5.802c0,5.132-3.403,7.308-5.133,8.089c-0.948,0.391-1.506,0.558-3.291,0.948
+					c0.558,0.056,1.06,0.167,1.563,0.279c4.63,0.837,6.526,2.957,7.475,4.909c0.335,0.67,0.893,2.12,0.893,4.073
+					C465.478,53.197,464.92,57.27,460.792,60.003z M502.07,62.458h-30.906V23.073h29.121v7.587h-19.303v7.196h18.02v7.475h-18.02v9.372
+					h21.088V62.458z M523.991,62.458h-9.93V30.827h-10.265v-7.754H534.2v7.754h-10.209V62.458z M560.696,62.458l-1.953-6.304h-14.504
+					l-1.953,6.304h-10.487l14.616-39.385h10.265l14.504,39.385H560.696z"/>
+				</svg>
+			</div>
+
+			<div id="menu">
+				<p class="menuPoint" anchor="home"><a href="#home">_Home</a></p>
+				<p class="menuPoint" anchor="signals"><a href="#signals">_Signals</a></p>
+				<p class="menuPoint" anchor="groups"><a href="#groups">_Groups</a></p>
+			</div>
+
+			<div class="content home" style="display: none;">
+				<p>IWO is a minimal Open Source home automation system. Its purpose is to allow the control of arbirary household devices, such as projectors, televisions, radio socket to name a few, with the Alexa voice assistant. Altough it is not just limited to for this purpose and can be easily extended with additional features.</p>
+				<p>Current features support the following:<br>
+				- Read and send infrared signals<br>
+				- Read and send radio (433MHz) signals<br>
+				- Create groups that combine multiple signals<br>
+				- Access signals and groups through voice commands</p>
+				<p>For feature requests and bug report please file an issue at the <a href="http://github.com">github project page</a>.</p>
+			</div>
+
+			<div class="content signals" style="display: none;">
+				<p>List of known signals</p>
+				<table id="signalTable" style="width:100%">
+					<tr>
+						<td style="width:5%; font-weight: bold;">Id</td>
+						<td style="width:15%; font-weight: bold;">Name</td>
+						<td style="width:35%; font-weight: bold;">Code On</td>
+						<td style="width:35%; font-weight: bold;">Code Off</td>
+						<td style="width:5%; font-weight: bold;">State</td>
+						<td style="width:5%; font-weight: bold;">Delete</td>
+					</tr>
+				</table>
+				<p><br></p>
+				<p>Read new signal</p>
+				<button class="button readIr">CREATE NEW IR</button>
+				<!-- <button class="button readRf433">CREATE NEW RF433</button> -->
+				<!-- <button class="button readRf866">READ RF866</button> -->
+				<p><br></p>
+				<table id="readIrTable" style="width:100%; display: none;">
+					<tr>
+						<td style="width:5%; font-weight: bold;">Id</td>
+						<td style="width:15%; font-weight: bold;">Name</td>
+						<td style="width:35%; font-weight: bold;">Code On</td>
+						<td style="width:35%; font-weight: bold;">Code Off</td>
+						<td style="width:5%; font-weight: bold;"></td>
+						<td style="width:5%; font-weight: bold;"></td>
+						<tr>
+							<td class="newSignalId"></td>
+							<td><input class="newSignalName"/></td>
+							<td><button class="button readSignal">Read On Code</button>&nbsp;<button class="button showCode">show</button><br><span class="smallFont" id="onCode" style="display: none"></span></td>
+							<td><button class="button readSignal">Read Off Code</button>&nbsp;<button class="button showCode">show</button><br><span class="smallFont" id="offCode" style="display: none"></span></td>
+							<td></td>
+							<td><span class="addSignal">+</span></td>
+						</tr>
+					</tr>
+				</table>
+			</div>
+
+			<div class="content groups" style="display: none;">
+				<p>List of known groups</p>
+				<table id="groupTable" style="width:100%">
+					<tr>
+						<td style="width:5%; font-weight: bold;">Id</td>
+						<td style="width:15%; font-weight: bold;">Name</td>
+						<td style="width:35%; font-weight: bold;">Signals On</td>
+						<td style="width:35%; font-weight: bold;">Signals Off</td>
+						<td style="width:5%; font-weight: bold;">State</td>
+						<td style="width:5%; font-weight: bold;">Delete</td>
+					</tr>
+				</table>
+				<p><br></p>
+				<p>Create new group</p>
+				<button class="button createGroup">CREATE GROUP</button>
+				<p><br></p>
+				<table id="createGroupTable" style="width:100%; display: none;">
+					<tr>
+						<td style="width:5%; font-weight: bold;">Id</td>
+						<td style="width:15%; font-weight: bold;">Name</td>
+						<td style="width:35%; font-weight: bold;">Signals On</td>
+						<td style="width:35%; font-weight: bold;">Signals Off</td>
+						<td style="width:5%; font-weight: bold;"></td>
+						<td style="width:5%; font-weight: bold;"></td>
+						<tr>
+							<td class="newGroupId"></td>
+							<td><input class="newGroupName"/></td>
+							<td><button class="button addOnSignal">Add On Signal</button></td>
+							<td><button class="button addOffSignal">Add Off Signal</button></td>
+							<td></td>
+							<td><span class="addGroup">+</span></td>
+						</tr>
+					</tr>
+				</table>
+			</div>
+
+			<div id="hidden">
+				<img id="bgImageLoader" crossorigin="anonymous" src="https://source.unsplash.com/random/1280x800?livingroom">
+			</div>
+
+		</div>
+
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript">
+			var host = "";
+			//host = "http://192.168.0.54";
+			var backgroundImageUpdateRate = 1000 * 60 * 60 * 24;
+
+			function getBase64Image(img) {
+				var canvas = document.createElement("canvas");
+				canvas.width = img.width;
+				canvas.height = img.height;
+				var ctx = canvas.getContext("2d");
+				ctx.drawImage(img, 0, 0);
+				var dataURL = canvas.toDataURL("image/png");
+				return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+			}
+
+			function verifyBackground() {
+				if($(window).width() / $(window).height() > 1280 / 800)
+					$("#background").css('background-size','100% auto');
+				else
+					$("#background").css('background-size','auto 100%');
+			}
+
+			function get(url, fn) {
+				$.ajax({
+					type: "GET",
+					url: url,
+					async: true,
+					success: fn
+				});
+			}
+
+			function post(url, json, fn) {
+				$.ajax({
+					type: "POST",
+					url: url,
+					data: json,
+					async: true,
+					timeout: 10000,
+					success: fn
+				});
+			}
+
+			function getObjects(obj, key, val) {
+				var objects = [];
+				for (var i in obj) {
+					if (!obj.hasOwnProperty(i))
+						continue;
+					if (typeof obj[i] == 'object') {
+						objects = objects.concat(getObjects(obj[i], key, val));
+					} else if (i == key && obj[key] == val) {
+						objects.push(obj);
+					}
+				}
+				return objects;
+			}
+
+			var config;
+			$(document).ready(function() {
+
+				// READ BACKGROUND FROM STORAGE OR LOAD NEW FROM WEB SERVER
+				if(localStorage.getItem("bgImage") == undefined || Date.now() - localStorage.getItem("bgImageUpdated") > backgroundImageUpdateRate) {
+					console.log("load new image from unsplash");
+					$("#bgImageLoader").on('load', function() {
+						var bgImg = getBase64Image(document.getElementById("bgImageLoader"));
+						localStorage.setItem("bgImage", bgImg);
+						localStorage.setItem("bgImageUpdated", Date.now());
+						$("#background").css('background-image','url(data:image/png;base64,' + bgImg + ')');
+					});
+				} else {
+					console.log("use existing image from local database");
+					bgImg = localStorage.getItem("bgImage");
+					$("#background").css('background-image','url(data:image/png;base64,' + bgImg + ')');
+				}
+
+				verifyBackground();
+				$(window).on('resize', verifyBackground);
+
+				// MENU AND CONTENT NAVIGATION
+				$(".content").hide();
+				$(".home").show();
+				$(".menuPoint").on("click", function() {
+					var contentClass = $(this).attr("anchor");
+					$(".content").hide();
+					$("."+contentClass).show();
+				});
+
+				// READ CONFIG FROM SERVER
+				function invalidateConfig() {
+					get(host + "/api/config", function(response) {
+						if(response === undefined) {
+							console.log("Problem with getting configuration from server");
+							return;
+						}
+						config = JSON.parse(response);
+						$("#signalTable tr").not(':first').remove();
+						config.signals.forEach(function(signal) {
+							boolState = (signal.state) ? "on" : "off"
+							$("#signalTable").append(`
+								<tr>
+									<td><span class="signalId">${signal.id}</span></td><td>${signal.name}</td>
+									<td><span class="smallFont">${signal.codeOn}</span></td>
+									<td><span class="smallFont">${signal.codeOff}</span></td>
+									<td>${boolState}</td>
+									<td><span class="removeSignal">×</span></td>
+								</tr>`);
+						});
+						$("#groupTable tr").not(':first').remove();
+						config.groups.forEach(function(group) {
+							var signalsOnString = "";
+							group.signalsOn.forEach(function(signalOn) {
+								if(getObjects(config.signals, "id", signalOn.signalId).length > 0) {
+									boolState = (signalOn.onCode) ? "on" : "off";
+									delayedString = "";
+									if(signalOn.delayed != 0)
+										delayedString = "(delayed " + (signalOn.delayed / 1000) + "s)";
+									signalsOnString += "" + getObjects(config.signals, "id", signalOn.signalId)[0].name + " " + boolState + " " + delayedString +"<br>";
+								}
+							});
+							var signalsOffString = "";
+							group.signalsOff.forEach(function(signalOff) {
+								if(getObjects(config.signals, "id", signalOff.signalId).length > 0) {
+									boolState = (signalOff.onCode) ? "on" : "off";
+									delayedString = "";
+									if(signalOff.delayed != 0)
+										delayedString = "(delayed " + (signalOff.delayed / 1000) + "s)";
+									signalsOffString += "" + getObjects(config.signals, "id", signalOff.signalId)[0].name + " " + boolState + " " + delayedString +"<br>";
+								}
+							});
+							$("#groupTable").append(`
+								<tr>
+									<td><span class="groupId">${group.id}</span></td>
+									<td>${group.name}</td>
+									<td>${signalsOnString}</td>
+									<td>${signalsOffString}</td>
+									<td>${group.state}</td>
+									<td><span class="removeGroup">×</span></td>
+								</tr>`);
+						});
+					});
+				}
+				invalidateConfig();
+				setInterval(invalidateConfig, 5000);
+
+				// CREATE NEW IR
+				function getNewSignalId() {
+					var id = 0;
+					config.signals.forEach(function(signal) {
+						if(signal.id >= id)
+							id = signal.id + 1;
+					});
+					return id;
+				}
+
+				$(".readIr").on("click", function() {
+					console.log("readIr");
+					$(".newSignalId").html(getNewSignalId());
+					$("#readIrTable").show();
+				});
+
+				$(".content").on("click", ".readSignal", function() {
+					var self = this;
+					post(host+"/api/read/ir", "", function(response) {
+						console.log(response);
+						response = response.replace(/,/g, ", ");
+						response = response.replace(/:/g, ": ");
+						response = response.replace(/{/g, "{ ");
+						response = response.replace(/}/g, "} ");
+						$(self).siblings("span").html(response);
+					});
+				});
+
+				$(".content").on("click", ".showCode", function() {
+					$(this).siblings("span").toggle();
+				});
+
+				$(".content").on("click", ".addSignal", function() {
+					var newSignalName = $(this).parent().parent().find(".newSignalName");
+					if(newSignalName[0].value == "") {
+						console.log("please fill out a callable name");
+						newSignalName.css("border", "2px solid #A00");
+						setTimeout(function () {
+							newSignalName.css("border", "1px solid #444");
+						}, 5000);
+						return;
+					}
+					var newConfig = config;
+					newConfig.signals.push({
+						"id": getNewSignalId(),
+						"name": $(".newSignalName")[0].value,
+						"codeOn": $("#onCode").html(),
+						"codeOff": $("#offCode").html(),
+						"state": false
+					});
+					console.log(JSON.stringify(newConfig));
+					console.log("add signal to config");
+					post("http://192.168.0.54/api/config", JSON.stringify(newConfig), function(response) {
+						invalidateConfig();
+						$("#readIrTable").hide();
+					});
+				});
+
+				$(".content").on("click", ".removeSignal", function() {
+					var removeSignalId = $($(this).parent().parent().find(".signalId")[0]).text();
+					var newConfig = config;
+					for(var i=newConfig.signals.length-1; i>=0; i--) {
+						console.log(newConfig.signals[i].id, removeSignalId);
+						if(newConfig.signals[i].id == removeSignalId) {
+							console.log("remove " + i);
+							newConfig.signals.splice(i, 1);
+							console.log(JSON.stringify(newConfig));
+							console.log("remove signal from config");
+							post("http://192.168.0.54/api/config", JSON.stringify(newConfig), function(response) {
+								invalidateConfig();
+							});
+							break;
+						}
+					};
+				});
+
+				// CREATE NEW GROUP
+				function getNewGroupId() {
+					var id = 0;
+					config.groups.forEach(function(group) {
+						if(group.id >= id)
+							id = group.id + 1;
+					});
+					return id;
+				}
+
+				$(".createGroup").on("click", function() {
+					console.log("createGroup");
+					$(".newGroupId").html(getNewGroupId());
+					$("#createGroupTable").show();
+				});
+
+				$(".addOnSignal").on("click", function() {
+					console.log("addOnSignal");
+					$(this).parent().append(`<div class="onSignals"><p style="margin-bottom:10px;"><br><br></p><select class="onSignalList"></select><select class="onSignalState">
+						<option value="true">On</option>
+						<option value="false">Off</option>
+					</select><input type="number" step="0.1" min="0" class="onSignalDelay" value="0"/></div>`);
+					config.signals.forEach(function(signal) {
+						$(".onSignalList").last().append('<option value="'+signal.id+'">'+signal.name+'</option>');
+					});
+				});
+
+				$(".addOffSignal").on("click", function() {
+					console.log("addOffSignal");
+					$(this).parent().append(`<div class="offSignals"><p style="margin-bottom:10px;"><br><br></p><select class="offSignalList"></select><select class="offSignalState">
+						<option value="true">On</option>
+						<option value="false">Off</option>
+					</select><input type="number" step="0.1" min="0" class="offSignalDelay" value="0"/></div>`);
+					config.signals.forEach(function(signal) {
+						$(".offSignalList").last().append('<option value="'+signal.id+'">'+signal.name+'</option>');
+					});
+				});
+
+				$(".content").on("click", ".addGroup", function() {
+					var newGroupName = $(this).parent().parent().find(".newGroupName");
+					if(newGroupName[0].value == "") {
+						console.log("please fill out a callable name");
+						newGroupName.css("border", "2px solid #A00");
+						setTimeout(function () {
+							newGroupName.css("border", "1px solid #444");
+						}, 5000);
+						return;
+					}
+					var newConfig = config;
+					var signalsOn = [];
+					var signalsOff = [];
+					$(".onSignals").each(function() {
+						signalsOn.push({
+							"signalId": $(this).children(".onSignalList")[0].value,
+							"delayed": $(this).children(".onSignalDelay")[0].value * 1000,
+							"onCode": ($(this).children(".onSignalState")[0].value == "true") ? true : false
+						});
+					})
+					$(".offSignals").each(function() {
+						signalsOff.push({
+							"signalId": $(this).children(".offSignalList")[0].value,
+							"delayed": $(this).children(".offSignalDelay")[0].value * 1000,
+							"onCode": ($(this).children(".offSignalState")[0].value == "true") ? true : false
+						});
+					})
+					newConfig.groups.push({
+						"id": getNewGroupId(),
+						"name": $(".newGroupName")[0].value,
+						"signalsOn": signalsOn,
+						"signalsOff": signalsOff,
+						"state":false
+					});
+					console.log(JSON.stringify(newConfig));
+					console.log("add group to config");
+					post("http://192.168.0.54/api/config", JSON.stringify(newConfig), function(response) {
+					 	invalidateConfig();
+					 	$("#createGroupTable").hide();
+					});
+				});
+
+				$(".content").on("click", ".removeGroup", function() {
+					var removeGroupId = $($(this).parent().parent().find(".groupId")[0]).text();
+					var newConfig = config;
+					for(var i=newConfig.groups.length-1; i>=0; i--) {
+						console.log(newConfig.groups[i].id, removeGroupId);
+						if(newConfig.groups[i].id == removeGroupId) {
+							console.log("remove " + i);
+							newConfig.groups.splice(i, 1);
+							console.log(JSON.stringify(newConfig));
+							console.log("remove group from config");
+							post("http://192.168.0.54/api/config", JSON.stringify(newConfig), function(response) {
+								invalidateConfig();
+							});
+							break;
+						}
+					};
+				});
+
+				// CREATE NEW RF433
+				$(".readRf433").on("click", function() {
+					console.log("readRf433");
+					post("http://192.168.0.54/api/read/rf433", "", function(response) {
+						console.log(response);
+					});
+				});
+
+				// CREATE NEW RF433
+				$(".readRf866").on("click", function() {
+					console.log("readRf866");
+					post("http://192.168.0.54/api/read/rf866", "", function(response) {
+						console.log(response);
+					});
+				});
+
+				// DEEP LINKING
+				var deepLink = window.location.href.substring(window.location.href.lastIndexOf('#'), window.location.href.length);
+				$(".menuPoint a").each(function() {
+					if($(this).attr("href") == deepLink) {
+						var contentClass = $(this).parent().attr("anchor");
+						$(".content").hide();
+						$("."+contentClass).show();
+					}
+				});
+
+			});
+		</script>
+
+
+	</body>
+</html>
