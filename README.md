@@ -6,5 +6,6 @@ Current features support the following:
 - Read and send infrared signals
 - Create groups that combine multiple signals with delayed sending
 - Access signals and groups through voice commands
+- Access signals and groups through http requests
 
 For feature requests and bug report please file an issue at the github project page.
