@@ -15,6 +15,8 @@ void webserverInit() {
   server.on("/api/read/rf866", HTTP_POST, handleApiReadRf866Post);
   server.on("/api/send/ir", HTTP_POST, handleApiSendIrPost);
   server.on("/api/send/irRaw", HTTP_POST, handleApiSendIrRawPost);
+  server.on("/api/send/signal", HTTP_POST, handleApiSendSignal);
+  server.on("/api/send/group", HTTP_POST, handleApiSendGroup);
   server.on("/api/reset", HTTP_GET, handleApiReset);
   // error page
   server.onNotFound(handleNotFound);
@@ -106,6 +108,31 @@ void handleApiSendIrRawPost() {
   Serial.println(F("handleApiSendIrRawPost"));
   sendIrRaw(server.arg("plain"), true);
   server.send(200, "text/html", "handleApiSendIrRawPost");
+}
+
+void handleApiSendSignal() {
+  Serial.println(F("handleApiSendSignal"));
+  DynamicJsonBuffer jsonBuffer;
+  JsonObject &json = jsonBuffer.parseObject(server.arg("plain")); // e.g. {"signalId": 0, "onCode": true}
+  if (!json.success())
+    return;
+  int signalId = json["signalId"].as<int>();
+  bool onCode = json["onCode"].as<bool>();
+  executeSignal(signalId, onCode);
+  server.send(200, "text/html", "handleApiSendSignal");
+}
+
+void handleApiSendGroup() {
+  Serial.println(F("handleApiSendGroup"));
+  DynamicJsonBuffer jsonBuffer;
+  JsonObject &json = jsonBuffer.parseObject(server.arg("plain")); // e.g. {"groupId": 0}
+  if (!json.success())
+    return;
+  int groupId = json["groupId"].as<int>();
+  bool onCode = json["onCode"].as<bool>();
+  String groupName = getGroupName(groupId);
+  executeSignalOrGroupByName(groupName, onCode);
+  server.send(200, "text/html", "handleApiSendGroup");
 }
 
 void handleApiReset() {
